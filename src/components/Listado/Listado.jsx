@@ -1,6 +1,6 @@
 import Table from 'react-bootstrap/Table'
 
-const Listado = () => {
+const Listado = ({ baseColaboradores }) => {
   return (
     <>
       <Table striped bordered hover>
@@ -10,35 +10,21 @@ const Listado = () => {
             <th>Nombre</th>
             <th>Correo</th>
             <th>Edad</th>
-            <th>Edad</th>
+            <th>Cargo</th>
             <th>Telefono</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Juan Soto</td>
-            <td>juans@colaborador.com</td>
-            <td>23</td>
-            <td>Desarrollador FrontEnd</td>
-            <td>99887766</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Juan Soto</td>
-            <td>juans@colaborador.com</td>
-            <td>23</td>
-            <td>Desarrollador FrontEnd</td>
-            <td>99887766</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Juan Soto</td>
-            <td>juans@colaborador.com</td>
-            <td>23</td>
-            <td>Desarrollador FrontEnd</td>
-            <td>99887766</td>
-          </tr>
+          {baseColaboradores.map(lista =>
+            <tr key={lista.id}>
+              <td>{lista.id}</td>
+              <td>{lista.nombre}</td>
+              <td>{lista.correo} </td>
+              <td>{lista.edad} </td>
+              <td>{lista.cargo} </td>
+              <td>{lista.telefono} </td>
+            </tr>
+          )}
         </tbody>
       </Table>
     </>

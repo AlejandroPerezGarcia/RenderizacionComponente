@@ -1,8 +1,13 @@
 import Listado from './components/Listado/Listado'
 import Buscador from './components/Buscador/Buscador'
 import Formulario from './components/Formulario/Formulario'
+import { useState } from 'react'
+import { BaseColaboradores } from './BaseColaboradores'
 
 const App = () => {
+  const [baseColaboradores, setBaseColabodarores] = useState(BaseColaboradores)
+  console.log(baseColaboradores)
+  console.log(setBaseColabodarores)
   return (
     <>
       <div className='container p-4' id='page'>
@@ -11,10 +16,10 @@ const App = () => {
           <Buscador />
         </header>
         <main className='container listado'>
-          <Listado />
+          <Listado baseColaboradores={baseColaboradores} />
         </main>
         <siderbar>
-          <Formulario />
+          <Formulario baseColaboradores={baseColaboradores} setBaseColabodarores={setBaseColabodarores} />
         </siderbar>
       </div>
     </>
