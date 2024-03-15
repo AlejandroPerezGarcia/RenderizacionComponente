@@ -2,18 +2,36 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { useState } from 'react'
 
-const Formulario = ({ setBaseColabodarores, baseColaboradores }) => {
+const Formulario = ({ setBaseColabodarores, baseColaboradores, setAlert }) => {
   const [nombreColaborador, setNombre] = useState('')
   const [correoColaborador, setCorreo] = useState('')
   const [edadColaborador, setEdad] = useState('')
   const [cargoColaborador, setCargo] = useState('')
   const [telefonoColaborador, setTelefono] = useState('')
-  const inicio = 1
+  const inicio = 3
   const fin = 100
   const random = inicio + Math.floor(Math.random() * fin)
 
   const enviarFormulario = (e) => {
     e.preventDefault()
+
+    if (
+      nombreColaborador.trim() === '' ||
+      correoColaborador.trim() === '' ||
+      edadColaborador.trim() === '' ||
+      cargoColaborador.trim() === '' ||
+      telefonoColaborador.trim() === ''
+    ) {
+      setAlert({ message: 'Completa todos los campos', color: 'danger' })
+      return
+    }
+    setAlert({ message: '¡Colaborador Agregado!', color: 'success' })
+    setNombre('')
+    setCorreo('')
+    setEdad('')
+    setCargo('')
+    setTelefono('')
+
     const nuevoRegistro = {
       id: random,
       nombre: nombreColaborador,
@@ -23,11 +41,6 @@ const Formulario = ({ setBaseColabodarores, baseColaboradores }) => {
       telefono: telefonoColaborador
     }
     setBaseColabodarores([...baseColaboradores, nuevoRegistro])
-    setNombre('')
-    setCorreo('')
-    setEdad('')
-    setCargo('')
-    setTelefono('')
   }
 
   const capturarInputNombre = (e) => {
