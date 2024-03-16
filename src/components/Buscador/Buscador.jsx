@@ -1,6 +1,6 @@
 import { Form } from 'react-bootstrap'
 
-const Buscador = () => {
+const Buscador = ({ filtrarColaboradores }) => {
   return (
     <>
       <Form className='form-group p-3'>
@@ -9,6 +9,7 @@ const Buscador = () => {
           name='buscar'
           id='inputBuscar'
           placeholder='Buscar un colaborador'
+          onChange={(e) => filtrarColaboradores(e.target.value)}
         />
       </Form>
     </>
